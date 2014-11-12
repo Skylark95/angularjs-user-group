@@ -1,0 +1,3 @@
+[submodule "angularjs-fizzbuzz"]
+	path = angularjs-fizzbuzz
+	url = git@github.com:Skylark95/angularjs-fizzbuzz.git
