@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AngularJS Member Profile Form</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <span class="navbar-brand">AngularJS Member Profile Form</span>
+        </div>
+    </nav>
+    <div class="container" ng-controller="MemberFormCtrl">
+        <h4>{{headerText}}</h4>
+        <form name="memberForm" role="form" novalidate class="simple-form">
+            <div class="form-group" show-errors>
+                <label for="firstName">First Name</label>
+                <input name="firstName" id="firstName" ng-model="firstName" ng-disabled="lockForm" type="text" class="form-control" placeholder="First Name" required>
+            </div>
+            <div class="form-group" show-errors>
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" ng-model="lastName" ng-disabled="lockForm" type="text" class="form-control" placeholder="Last Name" required>
+            </div>
+            <div class="form-group" show-errors>
+                <label for="dayOfWeek">Day Of Week Preference</label>
+                <select name="dayOfWeek" id="dayOfWeek" ng-model="selectedDay" ng-disabled="lockForm" ng-options="day for day in dayOptions" class="form-control" required>
+                    <option value="">Select a day</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="time">Time Preference</label>
+                <div ng-hide="lockForm">
+                    <timepicker id="time" ng-model="time"></timepicker>
+                </div>
+                <div ng-show="lockForm">
+                    {{time | date:'h:mm a'}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="skillLevel">AngularJS Skill Level</label>
+                <div ng-hide="lockForm">
+                    <rating id="skillLevel" ng-model="skill" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"></rating>
+                    <span id="skillValue">{{skill}}</span>
+                </div>
+                <div ng-show="lockForm">
+                    {{skill}} / 5
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="profileImage">Profile Image</label>
+                <input id="profileImage" ng-model="image" ng-disabled="lockForm" type="text" class="form-control" placeholder="URL to Profile Image">
+            </div>
+            <button ng-disabled="memberForm.$invalid" ng-hide="lockForm" class="btn btn-primary" ng-click="submit()">Submit</button>
+            <button ng-show="lockForm" class="btn btn-default" ng-click="edit()">Edit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+    <script src="/js/vendor/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
