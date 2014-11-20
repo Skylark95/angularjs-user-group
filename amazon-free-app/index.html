@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="amazonFreeApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AngularJS Amazon Free App Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel panel-default" ng-controller="AppDetailsCtrl">
+            <div class="panel-heading">Free App of the Day</div>
+            <div class="panel-body text-center">
+                <h4>{{app.name}}</h4>
+                <img class="center-block padding-bottom" ng-src="{{app.icon}}" />
+                <div class="padding-bottom">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span style="padding-left:5px;">by {{app.developer}}</span>
+                </div>
+                <div>
+                    <span class="glyphicon glyphicon-fire"></span>
+                    <s style="padding-left:1px;">{{app.originalPrice | currency}}</s>
+                    <strong class="text-danger">FREE</strong>
+                </div>
+                <div class="padding-bottom-more">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span style="padding-left:3px;">{{app.rating}}</span>
+                </div>
+                <div class="padding-bottom">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <em style="padding-left:8px;">Categorized under <strong>{{app.category}}</strong></em>
+                </div>
+                <blockquote class="small">{{app.description}}</blockquote>
+                <button ng-click="buy()" type="button" class="btn btn-primary margin-bottom">Buy Now</button>
+            </div>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
