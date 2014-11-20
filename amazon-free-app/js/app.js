@@ -2,7 +2,7 @@
 
 var amazonServices = angular.module('amazonServices', []);
 
-amazonServices.factory('FreeApp', ['$http', '$log', function ($http, $log) {
+amazonServices.factory('FreeApp', ['$http', function ($http) {
     return {
         getFreeApp: function() {
             return $http.get('http://api.skylark95.com/amazon/freeApp/');
@@ -12,7 +12,7 @@ amazonServices.factory('FreeApp', ['$http', '$log', function ($http, $log) {
 
 var amazonFreeApp = angular.module('amazonFreeApp', ['amazonServices']);
 
-amazonFreeApp.controller('AppDetailsCtrl', ['$scope', 'FreeApp', function ($scope, FreeApp) {
+amazonFreeApp.controller('AppDetailsCtrl', ['$scope', '$log', 'FreeApp', function ($scope, $log, FreeApp) {
     FreeApp.getFreeApp()
     .success(function(data) {
         $scope.app = data.freeApp;
